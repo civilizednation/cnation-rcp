@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f2f0fc">
+<title>Cnation RCP</title>
+
+<link rel="preload" href="./fonts/IBMPlexSansKR-Regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="./fonts/IBMPlexSansKR-Bold.woff2" as="font" type="font/woff2" crossorigin>
+
+<style>
+@font-face{font-family:'IBM Plex Sans KR';src:url('./fonts/IBMPlexSansKR-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'IBM Plex Sans KR';src:url('./fonts/IBMPlexSansKR-Bold.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+:root{--bg-top:#eef0fb;--bg-bottom:#f8f9fd;--panel:#ffffff;--line:#edeff7;--text:#182238;--muted:#7c8598;--purple1:#8a3ffc;--purple2:#5b3df5;--radius:20px;--shadow:0 12px 28px rgba(31,41,64,.07);--font-body:'IBM Plex Sans KR',"Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--font-head:'IBM Plex Sans KR',"Malgun Gothic","맑은 고딕",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{background:var(--bg-top)}body{margin:0;min-height:100vh;color:var(--text);background:linear-gradient(180deg,var(--bg-top) 0%,var(--bg-bottom) 55%,#f9fafc 100%);font-family:var(--font-body);font-weight:400;-webkit-font-smoothing:antialiased}button,input{font:inherit}button{-webkit-tap-highlight-color:transparent}.shell{width:min(100%,820px);min-height:100vh;margin:0 auto;padding:max(18px,env(safe-area-inset-top)) 16px max(22px,env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;padding:20px 22px;border-radius:26px;background:linear-gradient(120deg,var(--purple1) 0%,#7148f6 45%,var(--purple2) 100%);box-shadow:0 16px 32px rgba(90,60,240,.28)}.brand-small{margin:0 0 4px;color:rgba(255,255,255,.78);font-size:11px;font-weight:700;font-family:var(--font-head);letter-spacing:.13em}h1{margin:0;color:#fff;font-size:26px;line-height:1.15;letter-spacing:-.03em;font-weight:700;font-family:var(--font-head)}.header-home{display:none;width:42px;height:42px;flex-shrink:0;border:1px solid rgba(255,255,255,.35);border-radius:14px;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;font-size:19px}.header-home.show{display:grid;place-items:center}
+#homeView{display:none}#homeView.active{display:block}#detailView{display:none}#detailView.active{display:block}.intro{margin:0 0 22px;color:var(--muted);font-size:14px;line-height:1.6}.intro a{color:var(--purple2);text-decoration:none}
+.info-banner{display:flex;align-items:center;gap:10px;margin-bottom:22px;padding:13px 15px;border-radius:16px;background:#f1eefc;color:#5b3df5;font-size:12.5px;font-weight:700;font-family:var(--font-head);line-height:1.5}.info-banner .dot{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:#5b3df5;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;font-family:var(--font-head)}
+.category{margin-bottom:26px}.category-title{display:flex;align-items:center;gap:8px;margin:0 0 11px;color:#1e2a44;font-size:13px;font-weight:700;font-family:var(--font-head);letter-spacing:.06em}.recipe-list{display:grid;gap:12px}
+.recipe-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);box-shadow:var(--shadow);padding:15px 15px 16px;transition:.14s ease}
+.recipe-main{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:12px;align-items:center;cursor:pointer;background:none;border:0;width:100%;padding:0;text-align:left;color:inherit}
+.recipe-icon{width:52px;aspect-ratio:1;display:grid;place-items:center;border-radius:15px;font-size:25px}
+.recipe-text{min-width:0}.recipe-name{display:block;margin-bottom:3px;font-size:15px;font-weight:700;font-family:var(--font-head);line-height:1.35;color:var(--text)}.recipe-desc{display:-webkit-box;overflow:hidden;color:var(--muted);font-size:12px;line-height:1.5;-webkit-line-clamp:2;-webkit-box-orient:vertical}.detail-link{flex-shrink:0;display:flex;align-items:center;gap:1px;padding:6px 9px;border-radius:20px;background:#f4f5fb;color:#8993a8;font-size:11px;font-weight:700;font-family:var(--font-head);white-space:nowrap}
+.empty{display:none;padding:28px 16px;border:1px dashed var(--line);border-radius:17px;color:var(--muted);text-align:center;font-size:14px;background:#fff}.empty.show{display:block}
+.back-btn{margin:0 0 12px;padding:7px 0;border:0;background:transparent;color:var(--muted);font-weight:700;font-family:var(--font-head);cursor:pointer}.detail-card{padding:20px;border:1px solid var(--line);border-radius:26px;background:var(--panel);box-shadow:var(--shadow)}.detail-top{display:grid;grid-template-columns:66px minmax(0,1fr);gap:15px;align-items:start}.detail-icon{width:66px;aspect-ratio:1;display:grid;place-items:center;border-radius:18px;font-size:32px}.detail-category{margin:2px 0 5px;font-size:11px;font-weight:700;font-family:var(--font-head);letter-spacing:.1em}.detail-name{margin:0;font-size:21px;line-height:1.3;letter-spacing:-.02em;color:var(--text);font-weight:700;font-family:var(--font-head)}.detail-desc{margin:9px 0 0;color:var(--muted);font-size:14px;line-height:1.7}.section{margin-top:24px}.section h3{margin:0 0 10px;font-size:14px;color:var(--text);font-weight:700;font-family:var(--font-head)}
+.file-list{display:grid;gap:9px}.file-row{border:1px solid var(--line);border-radius:15px;padding:12px 14px;background:#fbfbfe}.file-row-top{display:flex;align-items:center;gap:10px}.file-icon{flex-shrink:0;width:34px;height:34px;border-radius:10px;background:#f1eefc;color:#5b3df5;display:grid;place-items:center;font-size:15px}.file-name{flex:1;min-width:0;font-size:13px;font-weight:700;font-family:var(--font-head);overflow-wrap:anywhere}.file-size{color:var(--muted);font-size:11px;flex-shrink:0}
+.file-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}.file-actions.single{grid-template-columns:1fr}
+.file-btn{min-height:40px;padding:9px 10px;border:0;border-radius:12px;font-size:12.5px;font-weight:700;font-family:var(--font-head);cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.file-btn.primary{background:linear-gradient(135deg,#8a3ffc,#5b3df5);color:#fff;box-shadow:0 8px 16px rgba(90,60,240,.22)}
+.file-btn.outline{background:#fff;color:#5b3df5;border:1.5px solid #d9d3fb}
+.preview{display:none;margin-top:10px;padding:12px 13px;border-radius:12px;background:#171b2c;color:#dbe1f5;font-size:12px;line-height:1.6;white-space:pre-wrap;word-break:break-word;max-height:340px;overflow:auto;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:400}.preview.show{display:block}
+footer{display:flex;justify-content:space-between;gap:10px;margin-top:26px;padding:15px 3px 3px;color:#a7aec2;font-size:11px;font-weight:700;font-family:var(--font-head)}.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom));z-index:100;max-width:calc(100vw - 32px);padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#242c42;color:#fff;font-size:12px;opacity:0;pointer-events:none;transform:translate(-50%,16px);transition:.18s ease;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (hover:hover){.recipe-item:hover{transform:translateY(-1px);box-shadow:0 16px 30px rgba(31,41,64,.1)}}@media (min-width:700px){.shell{padding-left:26px;padding-right:26px}.recipe-list{grid-template-columns:1fr 1fr}.detail-card{padding:26px}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header><div><p class="brand-small">CNATION DEV RECIPES</p><h1>Cnation RCP</h1></div><button id="homeButton" class="header-home" type="button" aria-label="홈으로">⌂</button></header>
+<main id="homeView" class="active">
+<p class="intro">여러 cnation 앱/게임에서 반복해서 쓰는 자료(폰트, 디자인 토큰, 템플릿 등)를 모아두고, 필요할 때 다운로드하거나 클립보드에 복사해서 새 프로젝트에 바로 붙여넣는 자료실입니다.</p>
+<div class="info-banner"><span class="dot">i</span><span>항목을 눌러 상세 내용을 확인하고, 파일별로 다운로드하거나 복사할 수 있습니다.</span></div>
+<div id="categoryArea"></div>
+<div id="emptyState" class="empty">등록된 레시피가 없습니다.</div>
+</main>
+<main id="detailView">
+<button id="backButton" class="back-btn" type="button">← 목록으로</button>
+<section class="detail-card">
+<div class="detail-top">
+<div id="detailIcon" class="detail-icon"></div>
+<div><p id="detailCategory" class="detail-category"></p><h2 id="detailName" class="detail-name"></h2><p id="detailDesc" class="detail-desc"></p></div>
+</div>
+<section class="section"><h3>파일</h3><div id="fileList" class="file-list"></div></section>
+</section>
+</main>
+<footer><span>CNATION</span><span>Version 1.0.0</span></footer>
+</div><div id="toast" class="toast"></div>
+<script src="./recipe-data.js"></script>
+<script>
+const PALETTE=[
+  {bg:'#ffe1e6',fg:'#e0355f'},
+  {bg:'#d9f7e6',fg:'#159a5c'},
+  {bg:'#fff3d6',fg:'#c9860a'},
+  {bg:'#ffe3d1',fg:'#d85f14'},
+  {bg:'#dbeafe',fg:'#1d4ed8'},
+  {bg:'#e6e0fb',fg:'#6d28d9'},
+  {bg:'#d7f5f0',fg:'#0d9488'}
+];
+function accentFor(recipe){const i=RECIPE_DATA.indexOf(recipe);return PALETTE[(i<0?0:i)%PALETTE.length]}
+const $=id=>document.getElementById(id);
+const homeView=$('homeView'),detailView=$('detailView'),categoryArea=$('categoryArea'),emptyState=$('emptyState'),backButton=$('backButton'),homeButton=$('homeButton'),detailIcon=$('detailIcon'),detailCategory=$('detailCategory'),detailName=$('detailName'),detailDesc=$('detailDesc'),fileList=$('fileList'),toast=$('toast');
+let toastTimer=null;
+function safe(v){return String(v??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+function getRecipeId(r){return encodeURIComponent(r.id)}
+function findRecipeById(id){return RECIPE_DATA.find(r=>getRecipeId(r)===id)}
+function showToast(m){clearTimeout(toastTimer);toast.textContent=m;toast.classList.add('show');toastTimer=setTimeout(()=>toast.classList.remove('show'),1800)}
+
+function renderHome(){categoryArea.innerHTML='';let total=0;CATEGORY_ORDER.forEach(categoryName=>{const recipes=RECIPE_DATA.filter(r=>r.category===categoryName);if(!recipes.length)return;total+=recipes.length;const category=document.createElement('section');category.className='category';const title=document.createElement('h2');title.className='category-title';title.innerHTML=`<span>${CATEGORY_ICON[categoryName]||'📦'}</span><span>${safe(categoryName)}</span>`;const list=document.createElement('div');list.className='recipe-list';recipes.forEach(r=>{const accent=accentFor(r);const item=document.createElement('div');item.className='recipe-item';const main=document.createElement('button');main.type='button';main.className='recipe-main';main.innerHTML=`<span class="recipe-icon" style="background:${accent.bg};color:${accent.fg}">${safe(r.icon||'📦')}</span><span class="recipe-text"><span class="recipe-name">${safe(r.title)}</span><span class="recipe-desc">${safe(r.desc)}</span></span><span class="detail-link">상세보기 ›</span>`;main.addEventListener('click',()=>openRecipe(r));item.appendChild(main);list.appendChild(item)});category.append(title,list);categoryArea.appendChild(category)});emptyState.classList.toggle('show',total===0)}
+
+function openRecipe(recipe,updateHistory=true){const accent=accentFor(recipe);detailIcon.textContent=recipe.icon||'📦';detailIcon.style.background=accent.bg;detailIcon.style.color=accent.fg;detailCategory.textContent=recipe.category||'';detailCategory.style.color=accent.fg;detailName.textContent=recipe.title||'';detailDesc.textContent=recipe.desc||'';renderFiles(recipe);homeView.classList.remove('active');detailView.classList.add('active');homeButton.classList.add('show');window.scrollTo(0,0);if(updateHistory)history.pushState({recipe:getRecipeId(recipe)},'','#'+getRecipeId(recipe))}
+
+function formatBytes(bytes){if(!bytes&&bytes!==0)return'';if(bytes<1024)return bytes+' B';if(bytes<1024*1024)return (bytes/1024).toFixed(0)+' KB';return (bytes/1024/1024).toFixed(1)+' MB'}
+
+async function renderFiles(recipe){fileList.innerHTML='';for(const file of recipe.files){const row=document.createElement('div');row.className='file-row';const top=document.createElement('div');top.className='file-row-top';top.innerHTML=`<span class="file-icon">${file.type==='text'?'📄':'🗂️'}</span><span class="file-name">${safe(file.name)}</span><span class="file-size" data-size></span>`;row.appendChild(top);
+  const preview=document.createElement('div');preview.className='preview';row.appendChild(preview);
+  const actions=document.createElement('div');actions.className='file-actions'+(file.type==='binary'?' single':'');
+  if(file.type==='text'){
+    const previewBtn=document.createElement('button');previewBtn.type='button';previewBtn.className='file-btn outline';previewBtn.textContent='👀 미리보기';
+    const copyBtn=document.createElement('button');copyBtn.type='button';copyBtn.className='file-btn primary';copyBtn.textContent='📋 클립보드 복사';
+    previewBtn.addEventListener('click',async()=>{if(preview.classList.contains('show')){preview.classList.remove('show');previewBtn.textContent='👀 미리보기';return}try{const text=await(await fetch(file.path)).text();preview.textContent=text;preview.classList.add('show');previewBtn.textContent='🙈 미리보기 닫기'}catch{showToast('파일을 불러오지 못했습니다.')}});
+    copyBtn.addEventListener('click',async()=>{try{const text=await(await fetch(file.path)).text();await navigator.clipboard.writeText(text);showToast(file.name+' 내용을 클립보드에 복사했습니다.')}catch{showToast('클립보드 복사에 실패했습니다.')}});
+    actions.append(previewBtn,copyBtn);
+  }
+  const dlBtn=document.createElement('button');dlBtn.type='button';dlBtn.className='file-btn '+(file.type==='binary'?'primary':'outline');dlBtn.textContent='⬇️ 다운로드';
+  dlBtn.addEventListener('click',async()=>{try{const res=await fetch(file.path);const blob=await res.blob();const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=file.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),4000);showToast(file.name+' 다운로드를 시작했습니다.')}catch{showToast('다운로드에 실패했습니다.')}});
+  actions.appendChild(dlBtn);
+  row.appendChild(actions);fileList.appendChild(row);
+  fetch(file.path,{method:'HEAD'}).then(res=>{const len=res.headers.get('content-length');if(len)top.querySelector('[data-size]').textContent=formatBytes(Number(len))}).catch(()=>{});
+}}
+
+function showHome(updateHistory=true){detailView.classList.remove('active');homeView.classList.add('active');homeButton.classList.remove('show');window.scrollTo(0,0);if(updateHistory)history.pushState({},'',location.pathname+location.search)}
+backButton.addEventListener('click',()=>location.hash?history.back():showHome());
+homeButton.addEventListener('click',()=>showHome());
+window.addEventListener('popstate',()=>{const hash=location.hash.replace('#','');if(hash){const r=findRecipeById(hash);if(r){openRecipe(r,false);return}}detailView.classList.remove('active');homeView.classList.add('active');homeButton.classList.remove('show');window.scrollTo(0,0)});
+renderHome();const initialHash=location.hash.replace('#','');if(initialHash){const r=findRecipeById(initialHash);if(r)openRecipe(r,false)}
+</script>
+</body>
+</html>
