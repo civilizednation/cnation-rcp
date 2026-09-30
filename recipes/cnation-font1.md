@@ -2,7 +2,31 @@
 
 cnation-app에 적용한 폰트 조합입니다. 본문과 제목/강조 사이의 조화가 좋고 가독성도 좋아서,
 앞으로 다른 cnation 앱/게임에도 같은 조합을 쓰려고 정리해둔 문서입니다.
-이 파일 하나만 새 세션에 첨부해서 "이대로 적용해줘"라고 요청하면 됩니다.
+이 파일 하나만 새 세션에 첨부해서 "이대로 적용해줘"라고 요청하면 됩니다 — 폰트 파일을
+따로 첨부할 필요 없이, 아래 0장의 주소에서 바로 받아 쓰면 됩니다.
+
+## 0. 빠른 적용 (추천) — 이미 만들어둔 파일을 그대로 받기
+
+`cnation-rcp` 저장소의 `fonts/` 폴더에 이미 최적화(서브셋)된 파일 2개가 올라가 있습니다.
+새로 다운로드·서브셋 작업을 할 필요 없이, 이 주소에서 그대로 받아 프로젝트의 `fonts/` 폴더에
+저장하면 됩니다.
+
+```bash
+mkdir -p fonts
+curl -sS -o fonts/IBMPlexSansKR-Regular.woff2 \
+  "https://raw.githubusercontent.com/civilizednation/cnation-rcp/main/fonts/IBMPlexSansKR-Regular.woff2"
+curl -sS -o fonts/IBMPlexSansKR-Bold.woff2 \
+  "https://raw.githubusercontent.com/civilizednation/cnation-rcp/main/fonts/IBMPlexSansKR-Bold.woff2"
+```
+
+| 파일명 | 굵기 | 용량 |
+|---|---|---|
+| `IBMPlexSansKR-Regular.woff2` | 본문 · 400 | 약 517KB |
+| `IBMPlexSansKR-Bold.woff2` | 제목·강조 · 700 | 약 497KB |
+
+받은 뒤 **3장의 HTML/CSS 코드**를 그대로 붙이면 끝입니다. 아래 1~2장(원본 다운로드·서브셋
+직접 하기)은 문자 범위를 바꾸고 싶거나(예: 한자·이모지 등 특수 문자 추가) 이 저장소 없이
+처음부터 새로 만들고 싶을 때만 참고하면 됩니다.
 
 ## 1. 폰트 정보
 
@@ -136,5 +160,5 @@ h1,h2,h3,.title,.btn,button{
 ## 5. 재사용 요청 문구 예시
 
 > 첨부한 cnation-font1.md 참고해서 이 앱에도 같은 폰트 조합(IBM Plex Sans KR, 본문 400 /
-> 제목·강조 700) 적용해줘. 폰트는 이 앱의 실제 텍스트에 맞게 새로 서브셋해서
-> 최적화된 용량으로 만들고, fonts/ 폴더에 저장해줘.
+> 제목·강조 700) 적용해줘. 폰트 파일은 0장에 있는 주소에서 그대로 받아서 fonts/ 폴더에
+> 저장하고, 3장의 코드대로 연결해줘.
