@@ -27,11 +27,22 @@ const RECIPE_DATA = [
       { name: "IBMPlexSansKR-Regular.woff2", path: "fonts/IBMPlexSansKR-Regular.woff2", type: "binary" },
       { name: "IBMPlexSansKR-Bold.woff2", path: "fonts/IBMPlexSansKR-Bold.woff2", type: "binary" }
     ]
+  },
+
+  {
+    id: "api-key",
+    title: "cnation API 키 설정 가이드",
+    category: "API",
+    icon: "🤖",
+    desc: "Gemini·GitHub Models·Groq(+Tavily 검색)로 AI 질문/답변 기능을 붙이는 가이드. API 키는 Vercel 팀 Shared 환경변수로 이미 등록됨",
+    files: [
+      { name: "cnation-api-key.md", path: "recipes/cnation-api-key.md", type: "text" }
+    ]
   }
 ];
 
 /* 카테고리 표시 순서 */
-const CATEGORY_ORDER = ["FONT", "CSS", "TEMPLATE", "SCRIPT", "CONFIG"];
+const CATEGORY_ORDER = ["FONT", "CSS", "TEMPLATE", "SCRIPT", "CONFIG", "API"];
 
 /* 카테고리별 아이콘 */
 const CATEGORY_ICON = {
@@ -39,5 +50,6 @@ const CATEGORY_ICON = {
   CSS: "🎨",
   TEMPLATE: "🧩",
   SCRIPT: "⚙️",
-  CONFIG: "🛠️"
+  CONFIG: "🛠️",
+  API: "🤖"
 };
