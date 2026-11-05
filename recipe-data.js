@@ -38,6 +38,18 @@ const RECIPE_DATA = [
     files: [
       { name: "cnation-api-key.md", path: "recipes/cnation-api-key.md", type: "text" }
     ]
+  },
+
+  {
+    id: "ranking",
+    title: "cnation 랭킹 기능 — 온라인 + 기기 동시 저장",
+    category: "SCRIPT",
+    icon: "🏆",
+    desc: "Firebase cnation-project에 컬렉션만 추가해서 쓰는 랭킹. 기록 한 건씩 추가, SDK 없이 REST, 인터넷이 안 되면 기기에 남은 목록을 보여 줌 (cnation-bb에서 사용)",
+    files: [
+      { name: "cnation-ranking.md", path: "recipes/cnation-ranking.md", type: "text" },
+      { name: "cnation-ranking.js", path: "recipes/cnation-ranking.js", type: "text" }
+    ]
   }
 ];
 

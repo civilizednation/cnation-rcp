@@ -15,4 +15,5 @@ cnation 앱/게임을 만들 때 반복해서 쓰는 자료(폰트, 디자인 �
 | 레시피 | 설명 |
 |---|---|
 | [cnation-font1.md](recipes/cnation-font1.md) | IBM Plex Sans KR 폰트 조합 (본문 400 / 제목·강조 700), 서브셋 최적화 방법 포함 |
+| [cnation-ranking.md](recipes/cnation-ranking.md) | 랭킹 기능: Firebase `cnation-project`에 컬렉션만 추가, 온라인 + 기기 동시 저장, 인터넷이 안 될 때도 마지막 목록 표시. 모듈 [cnation-ranking.js](recipes/cnation-ranking.js) 포함 |
 | [cnation-api-key.md](recipes/cnation-api-key.md) | Gemini·GitHub Models·Groq(+Tavily 검색) AI 질문/답변 기능 붙이는 가이드. 키 값은 포함하지 않음 |
