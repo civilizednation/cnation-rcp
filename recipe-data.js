@@ -50,6 +50,17 @@ const RECIPE_DATA = [
       { name: "cnation-ranking.md", path: "recipes/cnation-ranking.md", type: "text" },
       { name: "cnation-ranking.js", path: "recipes/cnation-ranking.js", type: "text" }
     ]
+  },
+
+  {
+    id: "equalizer",
+    title: "cnation 이퀄라이저 — 미리 분석 방식",
+    category: "SCRIPT",
+    icon: "🎚️",
+    desc: "음악 파일을 미리 FFT 분석해 audio.currentTime에 맞춰 그리는 비주얼라이저. iPhone 잠금화면·백그라운드 재생 유지, 6가지 디자인(A~F), React/바닐라 JS 예시 포함 (cnation-mb에서 사용)",
+    files: [
+      { name: "cnation-equalizer.md", path: "recipes/cnation-equalizer.md", type: "text" }
+    ]
   }
 ];
 
